@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Telescope Project — Handwritten Engineering Notebook</title>
+<style>
+:root{--ink:#263747;--blue:#315d83;--red:#a34e43;--green:#53775e;--paper:#fffef8;--grid:rgba(85,132,169,.16)}
+*{box-sizing:border-box}
+body{margin:0;background:#e6e4dc;color:var(--ink);font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;line-height:1.62}
+.sheet{width:min(1120px,calc(100% - 28px));margin:24px auto;padding:48px 58px 60px 72px;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:25px 25px;box-shadow:0 8px 32px #0002;position:relative}
+.sheet:before{content:"";position:absolute;left:42px;top:0;bottom:0;border-left:2px solid #c8797966}
+.sheet:after{content:"";position:absolute;left:12px;top:35px;width:15px;height:15px;border:2px solid #aab5bd;border-radius:50%;box-shadow:0 95px 0 -2px var(--paper),0 95px 0 0 #aab5bd,0 190px 0 -2px var(--paper),0 190px 0 0 #aab5bd,0 285px 0 -2px var(--paper),0 285px 0 0 #aab5bd}
+h1,h2,h3,p,li,td,th,label,.tag,.scribble,.small-note{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive}
+h1{font-size:clamp(2.1rem,5vw,3.5rem);line-height:1.12;margin:9px 0;color:#23394c;transform:rotate(-1deg);text-shadow:.5px .5px #315d8322}
+h2{font-size:1.55rem;color:var(--blue);display:inline-block;margin:30px 0 12px;border-bottom:2px solid #587b98;transform:rotate(-.4deg)}
+h3{font-size:1.12rem;color:var(--red);margin:13px 0 5px}
+p{margin:7px 0 12px}
+.eyebrow{color:var(--red);letter-spacing:1.5px;font-size:.92rem}
+.subtitle{color:#536b7d;font-size:1.05rem}
+.meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.tag{border:1.5px solid #718da3;border-radius:13px 9px 15px 8px;padding:3px 11px;background:#fff9;transform:rotate(-.5deg)}
+.rule{border:0;border-top:1.5px dashed #8da0ad;margin:24px 0}
+.note{border-left:4px solid var(--red);padding:10px 15px;margin:16px 0;background:#fff9;transform:rotate(-.25deg)}
+.scribble{color:var(--red);display:inline-block;transform:rotate(-2deg);font-size:1rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sketch,.paperbox{background:#fff9;border:1.5px dashed #8299aa;border-radius:9px 5px 11px 6px;padding:13px;transform:rotate(-.15deg)}
+.sketch svg{width:100%;height:auto;display:block}
+.caption{text-align:center;color:#64798a;font-size:.85rem}
+table{width:100%;border-collapse:collapse;background:#fff9;margin:12px 0 18px;font-size:.92rem}
+th,td{border:1.3px solid #8ea2b1;padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--blue);background:#e2eaf0aa}
+ul,ol{padding-left:23px;margin:5px 0 13px}
+li{padding:2px 0}
+.agenda{display:grid;grid-template-columns:38px 1fr;gap:8px 12px}
+.n{font-size:1.25rem;color:var(--red);border-bottom:1px solid #b7a99a}
+.agenda-item{border-bottom:1px dashed #aab4bc;padding:0 0 8px}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0}
+.flow span{border:1.5px solid var(--blue);border-radius:7px;padding:7px 10px;background:#fff9;text-align:center}
+.arrow{color:var(--red);font-size:1.2rem}
+.checkgrid{columns:2;column-gap:25px}
+.checkgrid label{display:block;break-inside:avoid;margin:6px 0}
+input[type=checkbox]{accent-color:var(--blue);margin-right:7px}
+textarea{width:100%;min-height:65px;border:0;border-bottom:1.5px dashed #8098a9;background:transparent;font:1rem "Segoe Print","Comic Sans MS",cursive;color:var(--ink);resize:vertical;outline:none}
+.prompt{color:#607487;font-size:.9rem}
+.footer{border-top:1px dashed #7890a2;margin-top:32px;padding-top:12px;color:#657789;font-size:.88rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.handunderline{text-decoration:underline;text-decoration-style:wavy;text-decoration-color:#a34e43;text-underline-offset:4px}
+@media(max-width:760px){.sheet{padding:30px 22px 40px 48px}.two,.three{grid-template-columns:1fr}.checkgrid{columns:1}table{font-size:.82rem}th,td{padding:6px}}
+@media print{body{background:white}.sheet{width:100%;margin:0;box-shadow:none;break-after:page}.sheet:after{display:none}textarea{min-height:45px}}
+</style>
+</head>
+<body>
+<main class="sheet">
+<header>
+<div class="eyebrow">✎ My engineering notebook · meeting preparation</div>
+<h1>AI-Powered<br>Autonomous Telescope</h1>
+<div class="subtitle">Control Systems • Embedded Systems • Mechanical Integration</div>
+<div class="meta">
+<span class="tag">Technical mentor: Eng. Ahmed Arabi</span>
+<span class="tag">Mount: Alt–Azimuth</span>
+<span class="tag">Main goal: Start the first prototype</span>
+</div>
+<p class="scribble">“Understand it → design it → build it → test it → improve it.”</p>
+</header>
+
+<section class="two">
+<div>
+<h2>00 — Why are we meeting?</h2>
+<p>I am leading a graduation project to build an autonomous telescope. I do not want to leave this meeting with only general advice. I want a practical engineering direction that my team can start implementing.</p>
+<div class="note"><b>My target before leaving:</b> a reviewed component list, preliminary electrical architecture, sensor plan, motor-control strategy, first build task, and measurable test criteria.</div>
+<h3>What does “prototype works” mean?</h3>
+<ul>
+<li>Both axes move independently and together.</li>
+<li>The mount can find a repeatable home position.</li>
+<li>Movement is smooth and does not skip steps under the tested load.</li>
+<li>We can command a known angle and verify the result.</li>
+<li>Power, wiring, and emergency stop are safe.</li>
+</ul>
+</div>
+<div class="sketch">
+<svg viewBox="0 0 430 300" aria-label="rough hand drawn telescope">
+<g fill="none" stroke="#263747" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<path d="M74 254 Q210 243 355 255 M112 259 L96 281 M316 260 L334 281"/>
+<path d="M177 245 L177 181 M245 245 L245 181 M177 181 Q211 163 245 181"/>
+<path d="M164 181 L143 151 L166 132 L258 132 L277 153 L252 181"/>
+<path d="M143 151 L112 98 Q108 89 118 84 L151 68 Q161 65 166 76 L198 132"/>
+<path d="M117 99 L151 81 L164 76 M124 113 L159 95"/>
+<path d="M198 132 L259 132 M199 141 L258 141"/>
+<path d="M207 132 L207 105 M218 132 L218 105 M198 104 Q212 91 229 104 L225 113 L201 113Z"/>
+<path d="M178 181 Q211 197 244 181 M211 197 L211 244"/>
+<path d="M180 207 L144 230 M244 207 L281 230"/>
+<path d="M280 153 Q308 137 311 111" stroke="#a34e43" stroke-dasharray="5 6"/>
+<path d="M311 111 l-9 6 m9 -6 l-2 11" stroke="#a34e43"/>
+</g>
+<g fill="#315d83" font-size="14" font-family="Segoe Print,Comic Sans MS,cursive">
+<text x="15" y="48">Optical tube</text><path d="M100 52 L135 84" stroke="#315d83" fill="none"/>
+<text x="277" y="62">Elevation axis</text><path d="M294 68 L254 124" stroke="#315d83" fill="none"/>
+<text x="294" y="204">Azimuth axis</text><path d="M293 207 L246 213" stroke="#315d83" fill="none"/>
+<text x="15" y="294">rough concept — not to scale</text>
+</g></svg>
+<div class="caption">Two-axis Alt–Az mount concept</div>
+</div>
+</section>
+
+<hr class="rule">
+<section>
+<h2>01 — Meeting agenda (suggested 60–90 min)</h2>
+<div class="agenda">
+<div class="n">01</div><div class="agenda-item"><h3>Project constraints & mechanical load — 10 min</h3>Tube weight, total moving mass, centre of gravity, axis friction, balance, expected pointing range, and prototype budget.</div>
+<div class="n">02</div><div class="agenda-item"><h3>Motors, drivers & transmission — 15 min</h3>Torque requirement, NEMA 17 suitability, gear ratio, belt/gears, microstepping, current limit, speed and acceleration.</div>
+<div class="n">03</div><div class="agenda-item"><h3>Controller, sensors & power — 15 min</h3>UNO vs ESP32, sensor necessity, feedback strategy, voltage/current budget, grounding, protection and wiring.</div>
+<div class="n">04</div><div class="agenda-item"><h3>Control algorithm — 20 min</h3>Homing, coordinate-to-angle conversion, step calculation, motion profile, position feedback, error handling and tracking.</div>
+<div class="n">05</div><div class="agenda-item"><h3>Implementation plan — 10–20 min</h3>Agree the first experiment, parts to buy, person responsible, deadline, test procedure and acceptance criteria.</div>
+</div>
+</section>
+
+<section>
+<h2>02 — Questions about mechanics & motors</h2>
+<div class="two">
+<div>
+<h3>Load and torque</h3>
+<ol>
+<li>What is the estimated total payload on the elevation axis?</li>
+<li>How should we calculate the required torque, including friction and acceleration?</li>
+<li>What safety margin should we use?</li>
+<li>Is NEMA 17 enough for both axes, or should the elevation axis use a stronger motor?</li>
+<li>Should we balance the optical tube around the elevation axis with a counterweight?</li>
+<li>Do we need a gearbox, timing belt, worm gear, or direct drive?</li>
+<li>How do we estimate backlash and its effect on pointing accuracy?</li>
+</ol>
+</div>
+<div>
+<h3>Motion performance</h3>
+<ol>
+<li>What maximum slew speed is reasonable for the prototype?</li>
+<li>What acceleration and deceleration profile should we use?</li>
+<li>Will microstepping improve smoothness enough for our use?</li>
+<li>How do we test whether the motor is missing steps?</li>
+<li>How do we prevent vibration from blurring the camera image?</li>
+<li>What happens if the mount reaches a mechanical limit?</li>
+<li>How should we route wires so they do not twist during 360° azimuth movement?</li>
+</ol>
+</div>
+</div>
+<div class="note"><b>Ask for a calculation, not a guess:</b> motor torque at the expected speed, estimated axis torque, gear ratio, and the assumptions used.</div>
+</section>
+
+<section>
+<h2>03 — Controller & electronics decisions</h2>
+<table>
+<tr><th>Item</th><th>Options to discuss</th><th></th></tr>
+<tr><td>Main controller</td><td>Arduino UNO / ESP32</td><td><textarea placeholder="Why this board? Pin count, timers, connectivity, code architecture..."></textarea></td></tr>
+<tr><td>Motor drivers</td><td>A4988 / DRV8825 / TMC2209</td><td><textarea placeholder="Exact module, current limit, cooling, microstep configuration..."></textarea></td></tr>
+<tr><td>Motors</td><td>2 × NEMA 17 (provisional)</td><td><textarea placeholder="Exact motor model, rated current, holding torque, step angle..."></textarea></td></tr>
+<tr><td>Motor supply</td><td>12 V provisional; size from motor/driver needs</td><td><textarea placeholder="Voltage, current capacity, fuse, connector, safety..."></textarea></td></tr>
+<tr><td>Logic supply</td><td>Board and sensor supply rails</td><td><textarea placeholder="Regulator, 5 V / 3.3 V compatibility, common ground..."></textarea></td></tr>
+<tr><td>Protection</td><td>Fuse, decoupling capacitor, emergency stop</td><td><textarea placeholder="What protection is needed and where?"></textarea></td></tr>
+</table>
+<h3>Questions to ask</h3>
+<ul>
+<li>Should the controller generate STEP/DIR pulses directly, or use a dedicated motion-control library?</li>
+<li>Can it reliably control two motors while reading sensors at the required rate?</li>
+<li>Which pins are reserved for STEP, DIR, ENABLE, I²C and limit switches?</li>
+<li>Do we need a separate regulated logic supply?</li>
+<li>Where should the bulk capacitor be placed, and what value does the driver manufacturer recommend?</li>
+<li>How do we set the driver current limit correctly for the exact motor?</li>
+<li>What is the safe power-up and power-down sequence?</li>
+</ul>
+</section>
+
+<section class="two">
+<div>
+<h2>04 — Sensor selection & readings</h2>
+<h3>MPU6050 — accelerometer + gyroscope</h3>
+<ul>
+<li>Accelerometer measures acceleration on X/Y/Z, including gravity when stationary.</li>
+<li>Gyroscope measures angular rate around X/Y/Z.</li>
+<li>It does not provide a reliable absolute azimuth heading by itself.</li>
+</ul>
+<p><b>Ask:</b> Do we really need tilt and vibration measurements in the first prototype? What filter, sample rate, mounting orientation and calibration should we use?</p>
+<h3>QMC5883L — magnetometer</h3>
+<ul>
+<li>Measures magnetic-field components on three axes.</li>
+<li>Heading needs calibration and tilt compensation where appropriate.</li>
+<li>Motors, steel parts, current-carrying wires and nearby magnets can distort readings.</li>
+</ul>
+<p><b>Ask:</b> Is a compass useful on this mount? Can we place it far from motors? How will we test hard-iron and soft-iron errors?</p>
+</div>
+<div>
+<h3>Limit switches</h3>
+<ul>
+<li>Provide a digital trigger at a known mechanical reference.</li>
+<li>Can establish a repeatable home point if mounted and approached consistently.</li>
+<li>Need debounce and safe failure handling.</li>
+</ul>
+<p><b>Ask:</b> Normally open or normally closed? One switch per axis or more? What happens if a switch wire breaks?</p>
+<h3>Rotary encoders</h3>
+<ul>
+<li>Measure shaft or axis rotation depending on where they are installed.</li>
+<li>Can help detect missed steps and measure actual position.</li>
+<li>A motor-shaft encoder may not detect gearbox backlash downstream.</li>
+</ul>
+<p><b>Ask:</b> Do we need axis-mounted encoders now, or can we begin with homing plus step counting and add feedback later?</p>
+</div>
+</section>
+<p class="scribble">✎ Value to record in the meeting</p>
+<table>
+<tr><th>For every sensor, document</th><th></th></tr>
+<tr><td>Exact part number / breakout board</td><td><textarea placeholder="Manufacturer, module revision, datasheet link..."></textarea></td></tr>
+<tr><td>Supply and logic voltage</td><td><textarea placeholder="Voltage range and 3.3 V / 5 V compatibility..."></textarea></td></tr>
+<tr><td>Measurement range / resolution / accuracy</td><td><textarea placeholder="Do not confuse resolution with accuracy..."></textarea></td></tr>
+<tr><td>Sampling rate and interface</td><td><textarea placeholder="I²C address, bus speed, sample frequency, wiring..."></textarea></td></tr>
+<tr><td>Calibration and mounting</td><td><textarea placeholder="Calibration steps, axis alignment, location on structure..."></textarea></td></tr>
+<tr><td>Role in the control algorithm</td><td><textarea placeholder="What decision or correction will use this measurement?"></textarea></td></tr>
+</table>
+
+<section>
+<h2>05 — Power system & wiring</h2>
+<div class="sketch">
+<svg viewBox="0 0 760 250" aria-label="hand drawn power and control architecture">
+<g fill="none" stroke="#263747" stroke-width="2.6" stroke-linecap="round">
+<rect x="15" y="85" width="130" height="75" rx="7"/><rect x="220" y="85" width="140" height="75" rx="7"/>
+<rect x="450" y="28" width="130" height="65" rx="7"/><rect x="450" y="150" width="130" height="65" rx="7"/>
+<rect x="650" y="85" width="95" height="75" rx="7"/>
+<path d="M145 122 L220 122 M360 108 L405 108 L405 60 L450 60 M360 138 L405 138 L405 182 L450 182 M580 60 L620 60 L620 122 L650 122 M580 182 L620 182 L620 122"/>
+<path d="M209 115 l11 7 -11 7 M439 53 l11 7 -11 7 M439 175 l11 7 -11 7 M639 115 l11 7 -11 7"/>
+</g>
+<g fill="#315d83" font-size="17" text-anchor="middle" font-family="Segoe Print,Comic Sans MS,cursive">
+<text x="80" y="115">DC supply</text><text x="80" y="139">with fuse</text>
+<text x="290" y="115">Controller</text><text x="290" y="139">UNO / ESP32</text>
+<text x="515" y="54">Driver 1</text><text x="515" y="76">Azimuth</text>
+<text x="515" y="176">Driver 2</text><text x="515" y="198">Elevation</text>
+<text x="697" y="115">Stepper</text><text x="697" y="139">motors</text>
+</g>
+<g fill="#a34e43" font-size="13" font-family="Segoe Print,Comic Sans MS,cursive"><text x="15" y="25">Conceptual block diagram — not a wiring schematic</text><text x="15" y="235">Keep motor power and logic power designed correctly; share signal ground as required by driver documentation.</text></g>
+</svg>
+<div class="caption">Confirm every connection against the exact board and driver datasheets before applying power.</div>
+</div>
+<h3>Power questions</h3>
+<ul>
+<li>What is the worst-case current when both motors accelerate or stall?</li>
+<li>Is one supply sufficient, or should logic and motor power be separated?</li>
+<li>What fuse rating, wire gauge, connector and emergency-stop arrangement are appropriate?</li>
+<li>How do we prevent motor noise from corrupting sensor readings?</li>
+<li>What grounding and decoupling layout do you recommend?</li>
+<li>How do we safely test current limit and motor temperature?</li>
+</ul>
+</section>
+
+<section>
+<h2>06 — Control logic: from target to telescope movement</h2>
+<div class="flow"><span>Choose celestial<br>target</span><b class="arrow">→</b><span>RA / Dec +<br>time + location</span><b class="arrow">→</b><span>Azimuth /<br>Elevation</span><b class="arrow">→</b><span>Motion<br>planner</span></div>
+<div class="flow"><span>Homing</span><b class="arrow">→</b><span>Motor steps<br>and direction</span><b class="arrow">→</b><span>Move axes</span><b class="arrow">→</b><span>Verify &<br>correct</span></div>
+<div class="two">
+<div>
+<h3>Coordinate questions</h3>
+<ol>
+<li>Which software/library calculates RA/Dec to Alt/Az?</li>
+<li>Which time standard and location accuracy are required?</li>
+<li>How do we handle local sidereal time and atmospheric refraction?</li>
+<li>How do we handle azimuth wraparound near 0°/360°?</li>
+<li>What happens when a target is below the horizon or outside elevation limits?</li>
+<li>How often should target coordinates be updated during tracking?</li>
+</ol>
+</div>
+<div>
+<h3>Motion questions</h3>
+<ol>
+<li>How do we convert a requested angle into motor steps?</li>
+<li>How do we choose a shortest safe path?</li>
+<li>Should both axes move simultaneously?</li>
+<li>What acceleration profile is suitable?</li>
+<li>How do we detect a stalled motor?</li>
+<li>When is PID useful, and what is the measured feedback variable?</li>
+</ol>
+</div>
+</div>
+<div class="paperbox">
+<h3>Basic step calculation — write the real values after the meeting</h3>
+<p>Full steps per motor revolution = 360° ÷ motor full-step angle.</p>
+<p>With microstep factor μ and gear ratio G (motor turns per axis turn):</p>
+<p class="scribble" style="text-align:center;font-size:1.15rem">axis steps per degree = (360 ÷ step angle) × μ × G ÷ 360</p>
+
+<p class="prompt">Remember: this is a commanded-position estimate. It does not prove the physical axis reached that angle.</p>
+</div>
+</section>
+
+<section>
+<h2>07 — Homing, calibration & safety</h2>
+<div class="two">
+<div>
+<h3>Homing questions</h3>
+<ul>
+<li>Where is the mechanical home position for each axis?</li>
+<li>At what low speed should the axis approach the switch?</li>
+<li>Do we back off and re-approach slowly for repeatability?</li>
+<li>How do we debounce the switch?</li>
+<li>How do we detect a switch that is permanently active?</li>
+<li>How do we prevent the mount moving into a hard stop?</li>
+</ul>
+</div>
+<div>
+<h3>Calibration questions</h3>
+<ul>
+<li>How do we align the mount level?</li>
+<li>How do we establish true north or a known azimuth reference?</li>
+<li>How do we calibrate the elevation zero?</li>
+<li>How do we measure pointing repeatability?</li>
+<li>How do we account for backlash and structural flex?</li>
+<li>How often is recalibration needed?</li>
+</ul>
+</div>
+</div>
+<div class="note"><b>Safety decision:</b> agree on a physical power cut-off, software limits, safe homing direction, cable management, and what the system does after a reset or sensor fault.</div>
+</section>
+
+<section>
+<h2>08 — What should we buy? (BOM to complete)</h2>
+<p>Do not purchase based only on a generic component name. Fill in exact part numbers and verify the datasheets, dimensions, current ratings and compatibility.</p>
+<table>
+<tr><th>Component</th><th>Model / specification to confirm</th><th>Qty</th><th>Price / supplier</th></tr>
+<tr><td>Microcontroller</td><td><textarea placeholder="Exact board and logic voltage"></textarea></td><td>1</td><td><textarea></textarea></td></tr>
+<tr><td>NEMA 17 motors</td><td><textarea placeholder="Torque, current, step angle, shaft"></textarea></td><td>2</td><td><textarea></textarea></td></tr>
+<tr><td>Stepper drivers</td><td><textarea placeholder="Exact module, current, cooling"></textarea></td><td>2</td><td><textarea></textarea></td></tr>
+<tr><td>DC power supply</td><td><textarea placeholder="Voltage, current, protection"></textarea></td><td>1</td><td><textarea></textarea></td></tr>
+<tr><td>Limit switches</td><td><textarea placeholder="Type, lever, NO/NC"></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td></tr>
+<tr><td>IMU / magnetometer</td><td><textarea placeholder="Only if justified for prototype stage"></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td></tr>
+<tr><td>Encoder(s)</td><td><textarea placeholder="Shaft or axis mounted? Resolution?"></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td></tr>
+<tr><td>Mechanical transmission</td><td><textarea placeholder="Belt, pulley, gears, bearings, couplers"></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td></tr>
+<tr><td>Wiring & protection</td><td><textarea placeholder="Wire gauge, fuse, connectors, capacitors"></textarea></td><td>As req.</td><td><textarea></textarea></td></tr>
+<tr><td>Mounting & structure</td><td><textarea placeholder="Brackets, fasteners, base, counterweight"></textarea></td><td>As req.</td><td><textarea></textarea></td></tr>
+</table>
+</section>
+
+<section>
+<h2>09 — First prototype roadmap</h2>
+<table>
+<tr><th>Step</th><th>Build task</th><th>Proof / acceptance criteria</th></tr>
+<tr><td>1</td><td>Inspect components and verify datasheets</td><td>Exact part numbers and safe voltage/current limits documented.</td></tr>
+<tr><td>2</td><td>Test one motor + one driver on bench</td><td>Correct direction, repeatable steps, no overheating; current set correctly.</td></tr>
+<tr><td>3</td><td>Integrate second motor and driver</td><td>Both motors can move independently without controller resets.</td></tr>
+<tr><td>4</td><td>Install switches and implement homing</td><td>Repeatable home procedure; switch faults stop motion safely.</td></tr>
+<tr><td>5</td><td>Mount motors on telescope structure</td><td>Movement under real load without collision or cable snag.</td></tr>
+<tr><td>6</td><td>Command known angular moves</td><td>Measured movement compared with commanded movement and documented.</td></tr>
+<tr><td>7</td><td>Add sensor readings / feedback</td><td>Sensor values logged, calibrated and shown to be useful.</td></tr>
+<tr><td>8</td><td>Integrate celestial pointing calculation</td><td>Known test target converted to valid Az/El and mount command.</td></tr>
+</table>
+</section>
+
+<section class="two">
+<div>
+<h2>10 — Questions before we finish</h2>
+<ul>
+<li>What is the very first task we should do tomorrow?</li>
+<li>Which parts must be bought now, and which can wait?</li>
+<li>What can we simulate before connecting hardware?</li>
+<li>What is the biggest technical risk in our current design?</li>
+<li>What should we measure during every test?</li>
+<li>Can we agree on a short follow-up review after the first motor test?</li>
+</ul>
+</div>
+<div class="sketch">
+<h3>Sketch / notes during the meeting</h3>
+<textarea style="min-height:210px" placeholder="Draw wiring ideas, pin assignments, dimensions, calculations, or decisions here..."></textarea>
+</div>
+</section>
+
+<section>
+<h2>11 — Meeting exit checklist</h2>
+<div class="checkgrid">
+<label><input type="checkbox"> Exact BOM and quantities</label>
+<label><input type="checkbox"> Motor torque calculation</label>
+<label><input type="checkbox"> Gear ratio / transmission decision</label>
+<label><input type="checkbox"> Driver and current settings</label>
+<label><input type="checkbox"> Power supply specification</label>
+<label><input type="checkbox"> Sensor choice and purpose</label>
+<label><input type="checkbox"> Sensor data / calibration plan</label>
+<label><input type="checkbox"> Electrical wiring diagram</label>
+<label><input type="checkbox"> Homing and safety method</label>
+<label><input type="checkbox"> Control algorithm outline</label>
+<label><input type="checkbox"> First implementation task</label>
+<label><input type="checkbox"> Test criteria and deadline</label>
+</div>
+<div class="note"><b>Closing sentence:</b> “يا باشمهندس، عايزين نطلع من الاجتماع بتصميم قابل للتنفيذ، وأول Task واضحة نبدأ فيها فورًا، ومعاها طريقة نختبر بيها إننا نفذناها صح.”</div>
+</section>
+
+<section>
+<h2>12 — Decisions & action owners</h2>
+<table>
+<tr><th>Decision / task</th><th>Responsible person</th><th>Deadline</th><th>Status / notes</th></tr>
+<tr><td><textarea placeholder="e.g. finalize motor model"></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td></tr>
+<tr><td><textarea></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td></tr>
+<tr><td><textarea></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td></tr>
+<tr><td><textarea></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td><td><textarea></textarea></td></tr>
+</table>
+</section>
+
+<div class="footer"><span>Personal engineering notebook · working document</span><span>Revision 02 · 19 November 2026</span></div>
+</main>
+</body>
+</html>
